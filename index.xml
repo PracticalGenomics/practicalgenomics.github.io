@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home Page Header on Practical Genomics Workshop</title>
-    <link>/</link>
+    <link>https://practicalgenomics.github.io/</link>
     <description>Recent content in Home Page Header on Practical Genomics Workshop</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://practicalgenomics.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Prep Work #1 - Swirl and base R</title>
-      <link>/preparation/assignment1/</link>
+      <link>https://practicalgenomics.github.io/preparation/assignment1/</link>
       <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/preparation/assignment1/</guid>
+      <guid>https://practicalgenomics.github.io/preparation/assignment1/</guid>
       <description>The registration form reserves your spot for two weeks. You must complete this assignment or your spot may be forfeited to someone on the waiting list. Afterwards, an additional 4-8 hours of work will be assigned each month leading up to the workshop (e.g. R and Unix tutorials, readings, software installation).
 Follow instructions at Swirl Stats  Install R (must be version 3.4.3 or higher) Install RStudio (must be version 1.</description>
     </item>
     
     <item>
       <title>MARCC</title>
-      <link>/marcc/</link>
+      <link>https://practicalgenomics.github.io/marcc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/marcc/</guid>
+      <guid>https://practicalgenomics.github.io/marcc/</guid>
       <description>Compute resources for this workshop are being generously provided by the Maryland Advanced Research Computing Center (MARCC). Access requires an ssh client and multi-factor authentication using Google Authenticator. You will need to do the following to access MARCC:
 Check your email for a workshop specific userid and password (e.g. john-temp@jhu.edu) Install Google Authenticator on your phone (iOS / Android) Add MARCC to Google Authenticator by retrieving and scanning your QR code Test your connection  Log in using ssh by opening Terminal.</description>
     </item>
     
     <item>
       <title>RStudio</title>
-      <link>/rstudio/</link>
+      <link>https://practicalgenomics.github.io/rstudio/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/rstudio/</guid>
+      <guid>https://practicalgenomics.github.io/rstudio/</guid>
       <description>
 RStudio provides a rich environment to work with R including a syntax-highlighting editor, integrated help and documentation, and interactive literate programming through R Notebooks.
 We make extensive use of R Markdown documents for preparation assignments, workshop sessions, and preparing reproducible reports.
@@ -45,10 +45,10 @@ We make extensive use of R Markdown documents for preparation assignments, works
     
     <item>
       <title>Slack</title>
-      <link>/slack/</link>
+      <link>https://practicalgenomics.github.io/slack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/slack/</guid>
+      <guid>https://practicalgenomics.github.io/slack/</guid>
       <description>Troubleshooting help is available from instructors, TAs, and other workshop participants in the #questions channel of the Practical Genomics Slack team. Read about other ways scientists are using this messaging tool.
 Create an account  Note: contact us for an invitation if you don’t have an @jhmi.edu @jhu.edu or @carnegiescience.edu email  Install the computer and phone apps to ensure you receive notification alerts  </description>
     </item>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Preparations on Practical Genomics Workshop</title>
-    <link>/preparation/</link>
+    <link>https://practicalgenomics.github.io/preparation/</link>
     <description>Recent content in Preparations on Practical Genomics Workshop</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/preparation/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://practicalgenomics.github.io/preparation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Prep Work #1 - Swirl and base R</title>
-      <link>/preparation/assignment1/</link>
+      <link>https://practicalgenomics.github.io/preparation/assignment1/</link>
       <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/preparation/assignment1/</guid>
+      <guid>https://practicalgenomics.github.io/preparation/assignment1/</guid>
       <description>The registration form reserves your spot for two weeks. You must complete this assignment or your spot may be forfeited to someone on the waiting list. Afterwards, an additional 4-8 hours of work will be assigned each month leading up to the workshop (e.g. R and Unix tutorials, readings, software installation).
 Follow instructions at Swirl Stats  Install R (must be version 3.4.3 or higher) Install RStudio (must be version 1.</description>
     </item>
