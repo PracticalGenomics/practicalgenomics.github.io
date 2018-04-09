@@ -6,10 +6,21 @@
     <description>Recent content in Preparations on Practical Genomics Workshop</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://practicalgenomics.github.io/preparation/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Prep Work #2 - R Markdown and Unix</title>
+      <link>https://practicalgenomics.github.io/preparation/assignment2/</link>
+      <pubDate>Mon, 09 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://practicalgenomics.github.io/preparation/assignment2/</guid>
+      <description>Learning Objectives
+Learn some analysis workflows  Obtain data programmatically Use R Markdown documents to communicate analyses  Practice manipulating genomics data using R  Subset data.frames: one or more columns, a block of rows, rows matching a specific column Visualize data: boxplot, barplot, scatterplot  Learn the Unix command line  Tasks
+Install software (if not already done)  Slack for troubleshooting help RStudio to provide a rich R environment (must be version 1.</description>
+    </item>
     
     <item>
       <title>Prep Work #1 - Swirl and base R</title>
