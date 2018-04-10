@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.38.1" />
+
+
+<title>Preparation Work - April - Practical Genomics 2018  - Practical Genomics Workshop</title>
+<meta property="og:title" content="Preparation Work - April - Practical Genomics Workshop">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/wordlecircle_400x400.jpg"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/preparation/">Preparation</a></li>
+    
+    <li><a href="/slack/">Slack</a></li>
+    
+    <li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheatsheets</a></li>
+    
+    <li><a href="/rstudio/">RStudio</a></li>
+    
+    <li><a href="/marcc/">MARCC</a></li>
+    
+    <li><a href="http://genomics.jhu.edu/workshop">Registration</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Preparation Work - April</h1>
+
+    
+
+    <div class="article-content">
+      <div id="learning-objectives" class="section level2">
+<h2>Learning Objectives</h2>
+<ol style="list-style-type: decimal">
+<li>Learn some analysis workflows
+<ul>
+<li>Obtain data programmatically</li>
+<li>Use R Markdown documents to communicate analyses</li>
+</ul></li>
+<li>Practice manipulating genomics data using R
+<ul>
+<li>Subset data.frames: one or more columns, a block of rows, rows matching a specific column</li>
+<li>Visualize data: boxplot, barplot, scatterplot</li>
+</ul></li>
+</ol>
+</div>
+<div id="assignment" class="section level2">
+<h2>Assignment</h2>
+<p>In this assignment, you will look through a gene expression dataset of highly purified human adult and developing fetal pancreatic a and b cells (data from a project that led to this paper <a href="doi:10.2337/db15-0039" class="uri">doi:10.2337/db15-0039</a>).</p>
+<ul>
+<li>Task 1. Download and load datasets</li>
+<li>Task 2. Visualize and explore data</li>
+<li>Task 3. Subset data</li>
+<li>Task 4. Plot data subsets</li>
+</ul>
+</div>
+<div id="preparation" class="section level2">
+<h2>Preparation</h2>
+<p>First we need to choose the working space where our work and data will be stored, then we need to download and load data.</p>
+<div id="working-space" class="section level4">
+<h4>Working space</h4>
+<p>Before you start, make a new folder called “PG2018” on your computer’s desktop. Because R stores data in a directory on your computer, use <code>getwd()</code> (get working directory) to determine where you are working and where your data will be saved. This function has no arguments. If you are not working in your PG2018 folder on your desktop, use the function <code>setwd()</code> (set working directory) to provide a path to the folder.</p>
+<pre class="r"><code># NOTE: For Windows computers, you will need to use \\ or / instead of \. For mac users, ~/Desktop/PG2018
+getwd()</code></pre>
+</div>
+</div>
+<div id="task-1-download-and-load-data" class="section level2">
+<h2>TASK 1: Download and Load Data</h2>
+<div id="obtain-data" class="section level4">
+<h4>Obtain data</h4>
+<p>Download and load the pancreatic dataset from the recount2 repository, which contains summarized gene expression data from &gt;70,000 human RNA-seq samples from the Sequence Read Archive (SRA). Use the function <code>download.file()</code> and the web link “<a href="http://idies.jhu.edu/recount/data/v2/SRP056835/counts_gene.tsv.gz" class="uri">http://idies.jhu.edu/recount/data/v2/SRP056835/counts_gene.tsv.gz</a>” to download “SRP056835.tsv.gz”.</p>
+<pre class="r"><code>download.file( &quot;http://idies.jhu.edu/recount/data/v2/SRP056835/counts_gene.tsv.gz&quot;, &quot;SRP056835.tsv.gz&quot; )</code></pre>
+<p>Load the data using the function <code>read.table()</code>. Note that as the dataset contains headers you must use <code>header =TRUE</code>. Assign the <code>data.frame</code> to the name “pancreas”.</p>
+<pre class="r"><code>pancreas &lt;- read.table( &quot;SRP056835.tsv.gz&quot;, header=TRUE )</code></pre>
+<p>Download and load associated SRA run table “SraRunTable.txt” from “<a href="http://practicalgenomics.github.io/data/SraRunTable.txt" class="uri">http://practicalgenomics.github.io/data/SraRunTable.txt</a>”</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+<p>Load the data and assign it to the name “sra”. Note that the data has headers and is tab delimited, so <code>sep = &quot;\t&quot;</code> must be used.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+</div>
+</div>
+<div id="task-2-view-and-explore-data" class="section level2">
+<h2>TASK 2: View and Explore Data</h2>
+<div id="view-data" class="section level4">
+<h4>View data</h4>
+<p>The most important first step in any data analyses is to look at the data. <code>data.frame</code>s can be explored interactively in RStudio. View all of the data by typing its assigned name or a view a reduced representation by using the function <code>head()</code> or <code>tail()</code>. The function <code>tail()</code> shows the end of a file and is especially useful for checking that a file downloaded completely.</p>
+<p>View only the <strong>end</strong> of the pancreas <code>data.frame</code> to be sure it was loaded completely.</p>
+<pre class="r"><code># &gt;&gt;&gt; Fix this command
+pancreas</code></pre>
+<p>View the entire pancreas <code>data.frame</code>.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+<p>View the beginning of the sra run table.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+<p>View the entire sra run table.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+</div>
+<div id="basic-exploration" class="section level4">
+<h4>Basic exploration</h4>
+<p>The functions <code>nrow()</code> and <code>ncol()</code> return the numbers of rows or columns present in the dataset. Use one of these functions to determine how many rows are in the pancreas <code>data.frame</code>.</p>
+<pre class="r"><code># &gt;&gt;&gt; Fix this command
+(pancreas)</code></pre>
+<p>Use one of these functions to determine how many columns are in the pancreas <code>data.frame</code>.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+</div>
+</div>
+<div id="task-3-subset-data.frames" class="section level2">
+<h2>TASK 3: Subset data.frames</h2>
+<p>Before plotting data, it’s important to know if the data can be plotted. By viewing the beginning of the pancreas <code>data.frame</code>, you can determine whether the data is numerical.</p>
+<pre class="r"><code>head(pancreas)</code></pre>
+<p>You can see that the pancreas <code>data.frame</code> has a column containing gene ids, which are not numerical. In order to plot this data, this column must be removed. You can do this by subsetting the data. To get you started with the basic technique of subsetting, try several short exercises.</p>
+<div id="retrieve-single-cell-a-row-and-a-column" class="section level4">
+<h4>Retrieve single cell, a row, and a column</h4>
+<p>To retrieve a single cell from a <code>data.frame</code>, use the name of the <code>data.frame</code> and single square brackets containing [row#,col#]. View a single cell from row 1, column 2.</p>
+<pre class="r"><code># &gt;&gt;&gt; Fix this command
+sra[row,column]</code></pre>
+<p>To retrieve an entire row record from the <code>data.frame</code>, simply use a comma to wildcard match the column number. Retrieve the first row record.</p>
+<pre class="r"><code>sra[1,]</code></pre>
+<p>To retrieve an entire column, replace the row number with a comma to wildcard match the row number. Use this to retrieve the first column.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+<p>The same column can be accessed using the <code>$</code> between the <code>data.frame</code> name and the column name with no spaces (hint: find the name of the column by looking at the data from one of the above steps.) Use the <code>$</code> and name of column 1 to retrieve the entire first column.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+</div>
+<div id="retrieving-multiple-rows-and-columns" class="section level4">
+<h4>Retrieving multiple rows and columns</h4>
+<p>To retrieve multiple row records, use <code>c()</code> within the single square brackets. Retrieve rows 10 and 20. (hint: Don’t forget the comma for columns.)</p>
+<pre class="r"><code>sra[c(10,20),]</code></pre>
+<p>Use the same technique to retrieve columns 1 and 4.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+<p>Finally, if you need to retrieve several consecutive columns/rows, you can get rid of the <code>c</code> and use a <code>:</code> between the lowest and highest column numbers you wish to retrieve (i.e. for columns 2 through 6, use <code>(2:6)</code>). Retrieve all columns that are numerical from the pancreas dataset using a <code>:</code> so that it can be plotted in TASK 4.</p>
+<pre class="r"><code># &gt;&gt;&gt; Fix this command
+pancreas</code></pre>
+</div>
+</div>
+<div id="task-4-visualize-data-using-plots" class="section level2">
+<h2>TASK 4: Visualize data using plots</h2>
+<div id="make-a-boxplot-for-numerical-data" class="section level4">
+<h4>Make a boxplot for numerical data</h4>
+<p>The function <code>boxplot()</code> is used to build boxplots from numerical data. To plot the numerical data from the pancreas <code>data.frame</code>, type the subsetted data in the <code>()</code>.</p>
+<pre class="r"><code>boxplot( pancreas[,1:24] )</code></pre>
+<p>To better view the data, fix the command below to make boxplots from the log2(x+1) numerical data from the pancreas <code>data.frame</code>.</p>
+<pre class="r"><code>log2( pancreas[,1:24] + 1 )</code></pre>
+</div>
+<div id="make-a-barplot-for-numbers-of-genes-with-zero-and-nonzero-values-for-each-sample" class="section level4">
+<h4>Make a barplot for numbers of genes with zero and nonzero values for each sample</h4>
+<p>For every sample in the pancreas <code>data.frame</code>, there are multiple genes with no expression (i.e. value = 0). In order to plot how many genes with no expression we see for each sample, we must use logical indexing to focus on entries that match our criteria. We will use <code>colSums()</code> to count the number of instances where a value is = 0 in the pancreas <code>data.frame</code>, and assign the resulting data to the name “pan_zero”. Change the code below to assign the resulting data to the name “pan_zero”.</p>
+<pre class="r"><code># &gt;&gt;&gt; Fix this command
+colSums( pancreas == 0 )</code></pre>
+<p>Look at the data called pan_zero.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+<p>Build a barplot using the function <code>barplot()</code> for the pan_zero data.</p>
+<pre class="r"><code>barplot( pan_zero )</code></pre>
+<p>In the same way as above, assign the numbers of instances a column has nonzero values to the name “pan_nonzero”.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+<p>Build a barplot from the nonzero data.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+</div>
+<div id="make-a-scatterplot-for-mean-fetal-alpha-cell-expression-vs.mean-adult-alpha-cell-expression" class="section level4">
+<h4>Make a scatterplot for mean fetal alpha cell expression vs. mean adult alpha cell expression</h4>
+<p>In order to compare mean gene expression values among samples, we need to know what cell type each sample is. By referencing the sra run table, we can figure out the cell type (called “source_name”) for each sample (called “Run”). Fix the code to retrieve data from these two columns.</p>
+<pre class="r"><code># &gt;&gt;&gt; Fix this command
+sra[&quot;Run&quot;,&quot;source_name&quot;]</code></pre>
+<p>The mean across an entire row or specific samples across a row can be calculated using the function <code>rowMeans()</code>. By viewing the column order for each sample in the pancreas <code>data.frame</code>, we can choose the proper columns for finding the mean expression values for adult alpha cells and fetal alpha cells. Fix the code to assign the resulting list of means to the name “adult_alpha_means”.</p>
+<pre class="r"><code># &gt;&gt;&gt; Fix this command
+rowMeans(pancreas[,c(11,12,14,15,16,17)], na.rm = FALSE)</code></pre>
+<p>To calculate the row means for the fetal alpha cell expression values, find the row means for the fetal alpha cell columns (7,8,9,10,13) and assign it to the name “fetal_alpha_means”, just as above.</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+<p>We can make a scatterplot of these means using the function <code>plot()</code>. Using <code>main=</code> we can name the plot, and we are also labeling the datapoints with the row number in order to quickly find gene names that show an obvious difference in expression.</p>
+<pre class="r"><code>plot( adult_alpha_means,
+      fetal_alpha_means,
+      main = &quot;Adult alpha cells vs Fetal alpha cells&quot;, 
+      text(x=adult_alpha_means, y=fetal_alpha_means, labels=1:58037) )</code></pre>
+<p>Although much of the data is difficult to visualize properly with this scale, we can use those points that already stand out to find the associated gene. Find the ensembl gene id associated with row 4393. (hint: the ensembl gene id is in the last column of the pancreas <code>data.frame</code>)</p>
+<pre class="r"><code># &gt;&gt;&gt; Place your answer below</code></pre>
+<p>Using this gene id to check with Ensembl, we find that this is GCG (Glucagon), which plays a key role in glucose metabolism and homeostasis. While differential expression analyses would be a better way to find gene expression value differences among cell types and stage, this quick scatterplot was able to pull a gene whose expression clustered among alpha cell types in the study from the which the data came.</p>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+
