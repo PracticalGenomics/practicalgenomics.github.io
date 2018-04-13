@@ -71,7 +71,11 @@
     
 
     <div class="article-content">
-      <p>RSEM SAMtools Bowtie</p>
+      <ul>
+<li>RSEM 1.3.0</li>
+<li>Bowtie 1.2.2</li>
+<li>SAMtools 1.3</li>
+</ul>
 <pre><code>ssh gateway2.marcc.jhu.edu -l username@jhu.edu
 
 srun -p shared -c 1 --mem 1024 -t 30 --pty bash
@@ -91,9 +95,9 @@ module load bowtie/1.2.2
 rsem-prepare-reference --bowtie --gtf hg19-iGenomes.gtf chr20.fa chr20rsem
 
 cd ..
-cp -R ~/work/rawdata .
+# cp -R ~/work/rawdata .
 cd rawdata
-./doRename.sh ALIAS
+# ./doRename.sh ALIAS
 gunzip HUES64.mRNA*gz
 
 cd ..

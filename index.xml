@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>ChIP-seq Commands on MARCC</title>
+      <link>https://practicalgenomics.github.io/drafts/chip-seq/</link>
+      <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://practicalgenomics.github.io/drafts/chip-seq/</guid>
+      <description>FastQC 0.11.7 Bowtie 1.2.2 SAMtools 1.3 deepTools 2.5.7 MACS2 2.1.1.20160309  [10:00 - 10:30] FastQC and Bowtie
+ssh gateway2.marcc.jhu.edu -l username@jhu.edu srun -p shared -c 1 --mem 1024 -t 30 --pty bash cd ~/scratch cp -R ~/work/rawdata . cd rawdata ./doRename.sh ALIAS gunzip HUES64_rep1.H3K4me3.chr20.fastq.gz cd .. mkdir chip-seq cd chip-seq module load fastqc/0.11.7 fastqc -o . ../rawdata/HUES64_rep1.H3K4me3.chr20.fastq # scp username-temp@jhu.edu@gateway2.marcc.jhu.edu:scratch/chip-seq/*.html Desktop cd ../genomes module load bowtie/1.2.2 bowtie-build chr20.fa chr20 cd .</description>
+    </item>
+    
+    <item>
       <title>Prep Work #2 - R Markdown and Unix</title>
       <link>https://practicalgenomics.github.io/preparation/assignment2/</link>
       <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
@@ -28,8 +38,7 @@ Install software (if not already done)  Slack for troubleshooting help RStudio t
       <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://practicalgenomics.github.io/drafts/rna-seq/</guid>
-      <description>RSEM SAMtools Bowtie
-ssh gateway2.marcc.jhu.edu -l username@jhu.edu srun -p shared -c 1 --mem 1024 -t 30 --pty bash module load anaconda-python/3.6 source activate pg2018 cd ~/scratch # mkdir genomes cd genomes # cp ~/work/genomes/chr20.fa.gz . # gunzip chr20.fa.gz cp ~/work/genomes/hg19-iGenomes.gtf . cp ~/work/genomes/hg19.sizes . module load bowtie/1.2.2 rsem-prepare-reference --bowtie --gtf hg19-iGenomes.gtf chr20.fa chr20rsem cd .. cp -R ~/work/rawdata . cd rawdata ./doRename.sh ALIAS gunzip HUES64.mRNA*gz cd .. mkdir rna-seq cd rna-seq rsem-calculate-expression --output-genome-bam --paired-end --strandedness none .</description>
+      <description>RSEM 1.3.0 Bowtie 1.2.2 SAMtools 1.3  ssh gateway2.marcc.jhu.edu -l username@jhu.edu srun -p shared -c 1 --mem 1024 -t 30 --pty bash module load anaconda-python/3.6 source activate pg2018 cd ~/scratch # mkdir genomes cd genomes # cp ~/work/genomes/chr20.fa.gz . # gunzip chr20.fa.gz cp ~/work/genomes/hg19-iGenomes.gtf . cp ~/work/genomes/hg19.sizes . module load bowtie/1.2.2 rsem-prepare-reference --bowtie --gtf hg19-iGenomes.gtf chr20.fa chr20rsem cd .. # cp -R ~/work/rawdata . cd rawdata # ./doRename.sh ALIAS gunzip HUES64.</description>
     </item>
     
     <item>
@@ -39,7 +48,7 @@ ssh gateway2.marcc.jhu.edu -l username@jhu.edu srun -p shared -c 1 --mem 1024 -t
       
       <guid>https://practicalgenomics.github.io/drafts/assignment3/</guid>
       <description>Learning Objectives
-Log into MARCC  Figure out two-factor authentication Build Bowtie2 index  More practice with R  Debug error messages Statistical thought (variance, difference)  Install R packages  annotatr ggbiplot ggplot2 dplyr rtracklayer Homo.sapiens bumphunter RTopper reactome.db GRanges   Tasks
+Log into MARCC  Figure out two-factor authentication Build Bowtie2 index Practice scp  More practice with R  Debug error messages Statistical thought (variance, difference)  Install R packages  annotatr ggbiplot ggplot2 dplyr rtracklayer Homo.sapiens bumphunter RTopper reactome.db GRanges   Tasks
 Setup and test Google Authenticator Under development  # Use your username, which should resemble lastname-temp ssh gateway2.marcc.jhu.edu -l username@jhu.edu # Connect to compute node interactively srun -p shared -c 1 --mem 1024 -t 30 --pty bash # Switch to high performance file system cd scratch # Create personal directory for genome datasets mkdir genomes cd genomes # Make a local working copy of chr20 from human hg19 cp ~/work/genomes/chr20.</description>
     </item>
     

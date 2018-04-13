@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.38.1" />
+
+
+<title>ChIP-seq Commands on MARCC - Practical Genomics Workshop</title>
+<meta property="og:title" content="ChIP-seq Commands on MARCC - Practical Genomics Workshop">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/wordlecircle_400x400.jpg"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/preparation/">Preparation</a></li>
+    
+    <li><a href="/slack/">Slack</a></li>
+    
+    <li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheatsheets</a></li>
+    
+    <li><a href="/rstudio/">RStudio</a></li>
+    
+    <li><a href="/marcc/">MARCC</a></li>
+    
+    <li><a href="http://genomics.jhu.edu/workshop">Registration</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">ChIP-seq Commands on MARCC</h1>
+
+    
+
+    <div class="article-content">
+      <ul>
+<li>FastQC 0.11.7</li>
+<li>Bowtie 1.2.2</li>
+<li>SAMtools 1.3</li>
+<li>deepTools 2.5.7</li>
+<li>MACS2 2.1.1.20160309</li>
+</ul>
+<p>[10:00 - 10:30] FastQC and Bowtie</p>
+<pre><code>ssh gateway2.marcc.jhu.edu -l username@jhu.edu
+
+srun -p shared -c 1 --mem 1024 -t 30 --pty bash
+
+cd ~/scratch
+cp -R ~/work/rawdata .
+cd rawdata
+./doRename.sh ALIAS
+gunzip HUES64_rep1.H3K4me3.chr20.fastq.gz 
+
+cd ..
+mkdir chip-seq
+cd chip-seq
+
+module load fastqc/0.11.7
+fastqc -o . ../rawdata/HUES64_rep1.H3K4me3.chr20.fastq 
+
+# scp username-temp@jhu.edu@gateway2.marcc.jhu.edu:scratch/chip-seq/*.html Desktop
+
+cd ../genomes
+module load bowtie/1.2.2
+bowtie-build chr20.fa chr20
+
+cd ../chip-seq
+bowtie -S ../genomes/chr20 ../rawdata/HUES64_rep1.H3K4me3.chr20.fastq K4.sam</code></pre>
+<p>[10:45 - 11:15] Wrangle Alignments with SAMtools</p>
+<pre><code>module load anaconda-python/3.6
+source activate pg2018
+
+samtools view -b -S K4.sam &gt; K4.bam
+samtools sort -o K4.sorted.bam K4.bam
+samtools index K4.sorted.bam
+
+samtools view -f 4 K4.sorted.bam &gt; K4.unaligned.sam</code></pre>
+<p>[11:15 - 11:45] Visualize Data with IGV</p>
+<pre><code># scp username-temp@jhu.edu@gateway2.marcc.jhu.edu:scratch/chip-seq/K4.sorted.bam* Desktop</code></pre>
+<p>[11:45 - 12:15] Summarize Coverage with deepTools</p>
+<pre><code># -p defaults to max/2 ... taking *much* longer than the 8 min on VirtualBox?
+plotFingerprint -p 1 -b K4.sorted.bam ~/work/chip-seq/HUES64_rep1.input.chr20.bam -plot K4.enrichment.png   
+
+# scp username-temp@jhu.edu@gateway2.marcc.jhu.edu:scratch/chip-seq/*.png Desktop
+
+bamCoverage -b K4.sorted.bam -o K4.bigWig
+
+# grep ^chr20 ~/work/genomes/hg19-iGenomes.bed &gt; ~/scratch/genomes/hg19-iGenomes.chr20.bed
+computeMatrix scale-regions -S K4.bigWig -R ../genomes/hg19-iGenomes.chr20.bed -out K4.scaled.mat.gz
+plotHeatmap -m K4.scaled.mat.gz -out K4.scaled.png
+
+# scp username-temp@jhu.edu@gateway2.marcc.jhu.edu:scratch/chip-seq/*.png Desktop</code></pre>
+<p>[1:00 - 2:00] Call Peaks with MACS2</p>
+<pre><code>macs2 callpeak -t K4.sorted.bam -c ~/work/chip-seq/HUES64_rep1.input.chr20.bam -g hs -n K4
+
+# scp username-temp@jhu.edu@gateway2.marcc.jhu.edu:scratch/chip-seq/*.bigWig Desktop
+# scp username-temp@jhu.edu@gateway2.marcc.jhu.edu:scratch/chip-seq/*.narrowPeak Desktop</code></pre>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
