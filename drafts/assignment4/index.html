@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.38.1" />
+
+
+<title>Prep Work #4 - Conda, R, and Reading - Practical Genomics Workshop</title>
+<meta property="og:title" content="Prep Work #4 - Conda, R, and Reading - Practical Genomics Workshop">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/wordlecircle_400x400.jpg"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/preparation/">Preparation</a></li>
+    
+    <li><a href="/slack/">Slack</a></li>
+    
+    <li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheatsheets</a></li>
+    
+    <li><a href="/rstudio/">RStudio</a></li>
+    
+    <li><a href="/marcc/">MARCC</a></li>
+    
+    <li><a href="http://genomics.jhu.edu/workshop">Registration</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Prep Work #4 - Conda, R, and Reading</h1>
+
+    
+
+    <div class="article-content">
+      <p>Learning Objectives</p>
+<ol style="list-style-type: decimal">
+<li>More practice with Unix
+<ul>
+<li>Install programs with conda</li>
+<li>Create a metagene with deepTools</li>
+</ul></li>
+<li>More practice with R</li>
+<li>Paper to read</li>
+</ol>
+<p>Tasks</p>
+<ol style="list-style-type: decimal">
+<li>Connect to <a href="https://practicalgenomics.github.io/marcc">MARCC</a></li>
+<li><p>Under development</p>
+<pre><code># Connect to compute node interactively
+srun -p shared -c 1 --mem 1024 -t 30 --pty bash
+
+# Load conda package manager
+module load anaconda-python/3.6
+
+# Add bioconda for scientific software
+# ... https://bioconda.github.io/recipes.html#recipes
+conda config --add channels defaults
+conda config --add channels conda-forge
+conda config --add channels bioconda
+
+# Create environment for an isolated, reproducible software stack
+conda create --name pg2018
+
+# Activate environment
+source activate pg2018
+
+# Install programs
+conda install macs2=2.1.1.20160309
+conda install deeptools=2.5.7
+conda install htslib=1.3
+conda install rsem=1.3.0
+
+# Switch to high performance file system
+cd ~/scratch
+
+# Create working directory
+mkdir prepwork
+cd prepwork
+
+# Test deepTools installation
+computeMatrix reference-point -S ~/work/roadmap/HUES64_rep1.H3K4me3.chr20.bw -R     ~/work/genomes/hg19-iGenomes.bed -out k4.mat.gz
+plotHeatmap -m k4.mat.gz -o k4.png</code></pre></li>
+<li><p>Copy metagene plot from MARCC to local computer</p>
+<pre><code>scp username-temp@jhu.edu@gateway2.marcc.jhu.edu:scratch/prepwork/k4.png Desktop</code></pre></li>
+</ol>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

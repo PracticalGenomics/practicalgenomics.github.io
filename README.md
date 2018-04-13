@@ -22,3 +22,10 @@ Preview with LiveReload
 > setwd( "~/git/website" )
 > blogdown::serve_site()
 ```
+
+Save changes
+
+```
+> blogdown::stop_server()
+> blogdown::build_site()
+```

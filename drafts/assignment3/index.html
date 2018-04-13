@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.38.1" />
 
 
-<title>Prep Work #2 - R Markdown and Unix - Practical Genomics Workshop</title>
-<meta property="og:title" content="Prep Work #2 - R Markdown and Unix - Practical Genomics Workshop">
+<title>Prep Work #3 - MARCC and Debugging R - Practical Genomics Workshop</title>
+<meta property="og:title" content="Prep Work #3 - MARCC and Debugging R - Practical Genomics Workshop">
 
 
 
@@ -16,6 +16,11 @@
 
 
 
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
 
 
 
@@ -61,44 +66,54 @@
   <article class="article">
     
 
-    <h1 class="article-title">Prep Work #2 - R Markdown and Unix</h1>
+    <h1 class="article-title">Prep Work #3 - MARCC and Debugging R</h1>
 
     
 
     <div class="article-content">
       <p>Learning Objectives</p>
 <ol style="list-style-type: decimal">
-<li>Learn some analysis workflows
+<li>Log into MARCC
 <ul>
-<li>Obtain data programmatically</li>
-<li>Use R Markdown documents to communicate analyses</li>
+<li>Figure out two-factor authentication</li>
+<li>Build Bowtie2 index</li>
 </ul></li>
-<li>Practice manipulating genomics data using R
+<li>More practice with R
 <ul>
-<li>Subset data.frames: one or more columns, a block of rows, rows matching a specific column</li>
-<li>Visualize data: boxplot, barplot, scatterplot</li>
+<li>Debug error messages</li>
+<li>Statistical thought (variance, difference)</li>
 </ul></li>
-<li>Learn the Unix command line</li>
 </ol>
 <p>Tasks</p>
 <ol style="list-style-type: decimal">
-<li>Install software (if not already done)
-<ul>
-<li><a href="https://practicalgenomics.github.io/slack/">Slack</a> for troubleshooting help</li>
-<li><a href="https://practicalgenomics.github.io/rstudio/">RStudio</a> to provide a rich R environment (must be version 1.1.423 or higher)</li>
-<li><a href="https://practicalgenomics.github.io/preparation/assignment1/">R</a> (must be version 3.4.3 or higher)</li>
-</ul></li>
-<li>Explore RNA-seq data in R ( <a href="https://practicalgenomics.github.io/assignments/prepwork-apr">preview</a> )
-<ul>
-<li>Video <a href="https://www.youtube.com/watch?v=SbU-e14077E">example</a></li>
-<li>Download assignment ( <a href="https://raw.githubusercontent.com/PracticalGenomics/assignments/master/prepwork-apr.Rmd"><code>prepwork-apr.Rmd</code></a> )
-<ul>
-<li>Make sure to save file with extension <code>.Rmd</code> and not <code>.Rmd.txt</code></li>
-</ul></li>
-<li>Save work as <code>prepwork-apr-lastname.Rmd</code> and email to your TA</li>
-</ul></li>
-<li>Codecademy’s “<a href="https://www.codecademy.com/learn/learn-the-command-line">Learn the Command Line</a>”</li>
+<li><a href="https://practicalgenomics.github.io/marcc">Setup and test</a> Google Authenticator</li>
+<li>Under development</li>
 </ol>
+<pre><code># Use your username, which should resemble lastname-temp
+ssh gateway2.marcc.jhu.edu -l username@jhu.edu
+
+# Connect to compute node interactively
+srun -p shared -c 1 --mem 1024 -t 30 --pty bash
+
+# Switch to high performance file system
+cd scratch
+
+# Create personal directory for genome datasets
+mkdir genomes
+cd genomes
+
+# Make a local working copy of chr20 from human hg19
+cp ~/work/genomes/chr20.fa.gz .
+ls -l
+gunzip chr20.fa.gz
+ls -l
+
+# Load program
+module load bowtie2/2.2.5
+
+# Index genome ... ~2 min
+bowtie2-build chr20.fa chr20
+ls -l</code></pre>
 
     </div>
   </article>
@@ -121,6 +136,18 @@
 
     </div>
     
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 

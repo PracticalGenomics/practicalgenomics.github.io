@@ -6,7 +6,7 @@
     <description>Recent content in Home Page Header on Practical Genomics Workshop</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://practicalgenomics.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,12 +14,35 @@
     <item>
       <title>Prep Work #2 - R Markdown and Unix</title>
       <link>https://practicalgenomics.github.io/preparation/assignment2/</link>
-      <pubDate>Mon, 09 Apr 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://practicalgenomics.github.io/preparation/assignment2/</guid>
       <description>Learning Objectives
 Learn some analysis workflows  Obtain data programmatically Use R Markdown documents to communicate analyses  Practice manipulating genomics data using R  Subset data.frames: one or more columns, a block of rows, rows matching a specific column Visualize data: boxplot, barplot, scatterplot  Learn the Unix command line  Tasks
 Install software (if not already done)  Slack for troubleshooting help RStudio to provide a rich R environment (must be version 1.</description>
+    </item>
+    
+    <item>
+      <title>Prep Work #3 - MARCC and Debugging R</title>
+      <link>https://practicalgenomics.github.io/drafts/assignment3/</link>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://practicalgenomics.github.io/drafts/assignment3/</guid>
+      <description>Learning Objectives
+Log into MARCC  Figure out two-factor authentication Build Bowtie2 index  More practice with R  Debug error messages Statistical thought (variance, difference)   Tasks
+Setup and test Google Authenticator Under development  # Use your username, which should resemble lastname-temp ssh gateway2.marcc.jhu.edu -l username@jhu.edu # Connect to compute node interactively srun -p shared -c 1 --mem 1024 -t 30 --pty bash # Switch to high performance file system cd scratch # Create personal directory for genome datasets mkdir genomes cd genomes # Make a local working copy of chr20 from human hg19 cp ~/work/genomes/chr20.</description>
+    </item>
+    
+    <item>
+      <title>Prep Work #4 - Conda, R, and Reading</title>
+      <link>https://practicalgenomics.github.io/drafts/assignment4/</link>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://practicalgenomics.github.io/drafts/assignment4/</guid>
+      <description>Learning Objectives
+More practice with Unix  Install programs with conda Create a metagene with deepTools  More practice with R Paper to read  Tasks
+Connect to MARCC Under development
+# Connect to compute node interactively srun -p shared -c 1 --mem 1024 -t 30 --pty bash # Load conda package manager module load anaconda-python/3.6 # Add bioconda for scientific software # ... https://bioconda.github.io/recipes.html#recipes conda config --add channels defaults conda config --add channels conda-forge conda config --add channels bioconda # Create environment for an isolated, reproducible software stack conda create --name pg2018 # Activate environment source activate pg2018 # Install programs conda install macs2=2.</description>
     </item>
     
     <item>
