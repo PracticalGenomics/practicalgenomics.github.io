@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.38.1" />
 
 
-<title>Prep Work #4 - Conda, R, and Reading - Practical Genomics Workshop</title>
-<meta property="og:title" content="Prep Work #4 - Conda, R, and Reading - Practical Genomics Workshop">
+<title>RNA-seq Commands on MARCC - Practical Genomics Workshop</title>
+<meta property="og:title" content="RNA-seq Commands on MARCC - Practical Genomics Workshop">
 
 
 
@@ -66,68 +66,58 @@
   <article class="article">
     
 
-    <h1 class="article-title">Prep Work #4 - Conda, R, and Reading</h1>
+    <h1 class="article-title">RNA-seq Commands on MARCC</h1>
 
     
 
     <div class="article-content">
-      <p>Learning Objectives</p>
-<ol style="list-style-type: decimal">
-<li>More practice with Unix
-<ul>
-<li>Install programs with conda</li>
-<li>Create a metagene with deepTools</li>
-<li>scp k4.png</li>
-</ul></li>
-<li>Install IGV
-<ul>
-<li>scp a .bw file</li>
-</ul></li>
-<li>More practice with R</li>
-<li>Paper to read</li>
-</ol>
-<p>Tasks</p>
-<ol style="list-style-type: decimal">
-<li>Connect to <a href="https://practicalgenomics.github.io/marcc">MARCC</a></li>
-<li><p>Under development</p>
-<pre><code># Connect to compute node interactively
+      <p>RSEM SAMtools Bowtie</p>
+<pre><code>ssh gateway2.marcc.jhu.edu -l username@jhu.edu
+
 srun -p shared -c 1 --mem 1024 -t 30 --pty bash
 
-# Load conda package manager
 module load anaconda-python/3.6
-
-# Add bioconda for scientific software
-# ... https://bioconda.github.io/recipes.html#recipes
-conda config --add channels defaults
-conda config --add channels conda-forge
-conda config --add channels bioconda
-
-# Create environment for an isolated, reproducible software stack
-conda create --name pg2018
-
-# Activate environment
 source activate pg2018
 
-# Install programs
-conda install macs2=2.1.1.20160309
-conda install deeptools=2.5.7
-conda install htslib=1.3
-conda install rsem=1.3.0
-conda install ucsc-wigtobigwig
-
-# Switch to high performance file system
 cd ~/scratch
+# mkdir genomes
+cd genomes
+# cp ~/work/genomes/chr20.fa.gz .
+# gunzip chr20.fa.gz
+cp ~/work/genomes/hg19-iGenomes.gtf .
+cp ~/work/genomes/hg19.sizes .
 
-# Create working directory
-mkdir prepwork
-cd prepwork
+module load bowtie/1.2.2
+rsem-prepare-reference --bowtie --gtf hg19-iGenomes.gtf chr20.fa chr20rsem
 
-# Test deepTools installation
-computeMatrix reference-point -S ~/work/roadmap/HUES64_rep1.H3K4me3.chr20.bw -R     ~/work/genomes/hg19-iGenomes.bed -out k4.mat.gz
-plotHeatmap -m k4.mat.gz -o k4.png</code></pre></li>
-<li><p>Copy metagene plot from MARCC to local computer</p>
-<pre><code>scp username-temp@jhu.edu@gateway2.marcc.jhu.edu:scratch/prepwork/k4.png Desktop</code></pre></li>
-</ol>
+cd ..
+cp -R ~/work/rawdata .
+cd rawdata
+./doRename.sh ALIAS
+gunzip HUES64.mRNA*gz
+
+cd ..
+mkdir rna-seq
+cd rna-seq
+
+rsem-calculate-expression --output-genome-bam --paired-end --strandedness none ../rawdata/HUES64.mRNA.chr20.R1.fastq ../rawdata/HUES64.mRNA.chr20.R2.fastq ../genomes/chr20rsem HUES64_1
+
+gunzip ~/scratch/rawdata/ectoderm.mRNA*gz
+rsem-calculate-expression --output-genome-bam --paired-end --strandedness none ~/scratch/rawdata/ectoderm.mRNA.chr20.R1.fastq ~/scratch/rawdata/ectoderm.mRNA.chr20.R2.fastq ~/scratch/genomes/chr20rsem ectoderm_1
+
+rsem-generate-data-matrix HUES64_1.genes.results ectoderm_1.genes.results &gt; HUES64_vs_ectoderm.genes.matrix
+rsem-run-ebseq HUES64_vs_ectoderm.genes.matrix 1,1 HUES64_vs_ectoderm.genes.EBSeq
+rsem-control-fdr HUES64_vs_ectoderm.genes.EBSeq 0.05 HUES64_vs_ectoderm.genes.DiffExp_fdr.txt
+
+samtools sort -o HUES64_1.genome_sorted.bam HUES64_1.genome.bam
+samtools index HUES64_1.genome_sorted.bam
+rsem-bam2wig HUES64_1.genome_sorted.bam HUES64_1.genome.wig HUES64_1
+wigToBigWig HUES64_1.genome.wig ../genomes/hg19.sizes HUES64_1.genome.bw
+
+samtools sort -o ectoderm_1.genome_sorted.bam ectoderm_1.genome.bam
+samtools index ectoderm_1.genome_sorted.bam
+rsem-bam2wig ectoderm_1.genome_sorted.bam ectoderm_1.genome.wig ectoderm_1
+wigToBigWig ectoderm_1.genome.wig ../genomes/hg19.sizes ectoderm_1.genome.bw</code></pre>
 
     </div>
   </article>
