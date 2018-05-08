@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.38.1" />
 
 
-<title>Prep Work #3 - MARCC and Debugging R - Practical Genomics Workshop</title>
-<meta property="og:title" content="Prep Work #3 - MARCC and Debugging R - Practical Genomics Workshop">
+<title>Prep Work #3 - MARCC and Troubleshooting R - Practical Genomics Workshop</title>
+<meta property="og:title" content="Prep Work #3 - MARCC and Troubleshooting R - Practical Genomics Workshop">
 
 
 
@@ -66,36 +66,72 @@
   <article class="article">
     
 
-    <h1 class="article-title">Prep Work #3 - MARCC and Debugging R</h1>
+    <h1 class="article-title">Prep Work #3 - MARCC and Troubleshooting R</h1>
 
     
 
     <div class="article-content">
-      <p>Learning Objectives</p>
+      <div id="learning-objectives" class="section level2">
+<h2>Learning Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Log into MARCC
+<li>Continue practicing genomics data manipulation using R
 <ul>
-<li>Figure out two-factor authentication</li>
-<li>Build Bowtie2 index</li>
-<li>Practice scp</li>
+<li>Review loading and examining a data.frame</li>
+<li>Find data of interest using boolean vectors</li>
+<li>Troubleshoot common error messages</li>
 </ul></li>
-<li>More practice with R
+<li>Install R packages</li>
+<li>Practice using Unix on MARCC
 <ul>
-<li>Debug error messages</li>
-<li>Statistical thought (variance, difference)</li>
+<li>Log in using ssh and two-factor authentication</li>
+<li>Transfer a file using scp</li>
+<li>Run a program available through <code>module load</code></li>
+</ul></li>
+</ol>
+</div>
+<div id="tasks" class="section level2">
+<h2>Tasks</h2>
+<ol style="list-style-type: decimal">
+<li>Subset and wrangle RNA-seq data in R ( <a href="https://github.com/PracticalGenomics/assignments/blob/master/prepwork-may.Rmd">preview</a> )
+<ul>
+<li>Download assignment ( <a href="https://github.com/PracticalGenomics/assignments/raw/master/prepwork-may.Rmd"><code>prepwork-may.Rmd</code></a> )
+<ul>
+<li>Make sure to save file with extension <code>.Rmd</code> and not <code>.Rmd.txt</code></li>
+</ul></li>
+<li>Save work as <code>prepwork-may-lastname.Rmd</code> and email to your TA</li>
 </ul></li>
 <li>Install R packages
 <ul>
-<li>annotatr</li>
-<li>ggbiplot ggplot2 dplyr</li>
-<li>rtracklayer Homo.sapiens bumphunter RTopper reactome.db GRanges</li>
+<li>From <a href="https://cran.r-project.org">CRAN</a> e.g. <code>install.packages( &quot;package&quot; )</code>
+<ul>
+<li>ggplot2, dplyr, ggbiplot, gplots</li>
 </ul></li>
-</ol>
-<p>Tasks</p>
-<ol style="list-style-type: decimal">
+<li>From <a href="https://bioconductor.org">Bioconductor</a> e.g. <code>biocLite( &quot;package&quot; )</code>
+<ul>
+<li>annotatr, rtracklayer, Homo.sapiens, bumphunter, RTopper, reactome.db, GRanges</li>
+<li>Note: Load the <code>biocLite()</code> function once per R session via <code>source( &quot;https://bioconductor.org/biocLite.R&quot; )</code></li>
+</ul></li>
+</ul></li>
+<li>Work with MARCC
+<ul>
 <li><a href="https://practicalgenomics.github.io/marcc">Setup and test</a> Google Authenticator</li>
-<li>Under development</li>
-</ol>
+<li>Transfer file from MARCC
+<ul>
+<li>Note: Windows use <code>md</code> and <code>pscp</code> instead of <code>mkdir</code> and <code>pscp</code></li>
+</ul></li>
+</ul>
+<pre><code># Change to the &quot;Desktop&quot; directory on your laptop
+cd Desktop
+
+# Make a directory called PG2018 if it doesn&#39;t already exist
+mkdir PG2018
+
+# Secure copy a file from MARCC to your PG2018 directory
+scp username@jhu.edu@gateway2.marcc.jhu.edu:work/test.txt PG2018</code></pre>
+<ul>
+<li>View the contents of <code>Desktop/PG2018/test.txt</code></li>
+<li>Build a <a href="https://www.youtube.com/watch?v=u06cm08U0BQ">genome index</a> using <a href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a></li>
+</ul>
 <pre><code># Use your username, which should resemble lastname-temp
 ssh gateway2.marcc.jhu.edu -l username@jhu.edu
 
@@ -120,7 +156,9 @@ module load bowtie2/2.2.5
 
 # Index genome ... ~2 min
 bowtie2-build chr20.fa chr20
-ls -l</code></pre>
+ls -l</code></pre></li>
+</ol>
+</div>
 
     </div>
   </article>
