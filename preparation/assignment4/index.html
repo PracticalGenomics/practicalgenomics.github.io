@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.38.1" />
+
+
+<title>Prep Work #4 - Conda, scp, IGV, and Plotting in R - Practical Genomics Workshop</title>
+<meta property="og:title" content="Prep Work #4 - Conda, scp, IGV, and Plotting in R - Practical Genomics Workshop">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/wordlecircle_400x400.jpg"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/preparation/">Preparation</a></li>
+    
+    <li><a href="/slack/">Slack</a></li>
+    
+    <li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheatsheets</a></li>
+    
+    <li><a href="/rstudio/">RStudio</a></li>
+    
+    <li><a href="/marcc/">MARCC</a></li>
+    
+    <li><a href="http://genomics.jhu.edu/workshop">Registration</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Prep Work #4 - Conda, scp, IGV, and Plotting in R</h1>
+
+    
+
+    <div class="article-content">
+      <div id="learning-objectives" class="section level2">
+<h2>Learning Objectives</h2>
+<ol style="list-style-type: decimal">
+<li>Continue practicing Unix on MARCC
+<ul>
+<li>Install programs with conda</li>
+<li>Create a metagene with deepTools</li>
+</ul></li>
+<li>Practice transfering files from MARCC</li>
+<li>Install IGV</li>
+<li>Continue practicing plotting using R</li>
+</ol>
+</div>
+<div id="tasks" class="section level2">
+<h2>Tasks</h2>
+<ol style="list-style-type: decimal">
+<li>Install programs using conda and test <a href="https://deeptools.readthedocs.io/">deepTools</a>
+<ul>
+<li>Connect to MARCC <a href="https://practicalgenomics.github.io/marcc/">via ssh</a></li>
+<li>Follow these <a href="https://github.com/PracticalGenomics/assignments/blob/master/conda.Rmd">instructions</a></li>
+<li>Log out of MARCC (or use a different terminal). Transfer metagene plot from MARCC to local computer to view image (scroll right to see entire command … ends in <code>Desktop/PG2018</code>)</li>
+</ul>
+<pre><code>scp username@jhu.edu@gateway2.marcc.jhu.edu:scratch/prepwork/k4.png Desktop/PG2018</code></pre></li>
+<li>Install IGV
+<ul>
+<li>Install the <a href="https://software.broadinstitute.org/software/igv/download">IGV 2.4.10</a> Mac App or Windows Zip (not Launch icon)
+<ul>
+<li>Install <a href="https://www.java.com/download">Java</a> v1.8 if not already installed (not 1.7 or 1.9)</li>
+</ul></li>
+<li>Transfer <a href="https://genome.ucsc.edu/goldenpath/help/bigWig.html">bigWig</a> file using scp (scroll to see entire command)</li>
+</ul>
+<pre><code>scp username@jhu.edu@gateway2.marcc.jhu.edu:work/roadmap/HUES64_rep1.mRNA.chr20.bw Desktop/PG2018</code></pre>
+<ul>
+<li>Start IGV
+<ul>
+<li>Select “Human <a href="https://www.ncbi.nlm.nih.gov/grc/human">hg19</a>” in the upper left</li>
+<li>In the File menu, select “Load from File” and select the <code>HUES64_rep1.mRNA.chr20.bw</code> file in Desktop/PG2018</li>
+<li>Change “All” to “chr20”, clicking upper right “+” to zoom</li>
+<li>Navigate to <code>chr20:18486382-18543963</code></li>
+</ul></li>
+<li>Submit screenshot to your TA</li>
+</ul></li>
+<li>Plot RNA-seq data in R ( <a href="https://github.com/PracticalGenomics/assignments/blob/master/prepwork-jun.Rmd">preview</a> )
+<ul>
+<li>Download assignment ( <a href="https://github.com/PracticalGenomics/assignments/raw/master/prepwork-jun.Rmd"><code>prepwork-jun.Rmd</code></a> )</li>
+<li>Save work as <code>prepwork-jun-lastname.Rmd</code> and email to your TA</li>
+</ul></li>
+</ol>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
