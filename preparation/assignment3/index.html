@@ -121,15 +121,15 @@
 <li>Note: Load the <code>install_github()</code> function via <code>library( &quot;devtools&quot; )</code></li>
 </ul></li>
 </ul></li>
-<li>Work with MARCC
-<ul>
 <li><a href="https://practicalgenomics.github.io/marcc">Setup and test</a> Google Authenticator</li>
-<li>Transfer file from MARCC
+<li>Transfer a file from MARCC
+<ul>
+<li>Instruct your <strong>laptop</strong> to retrieve <code>text.txt</code> from MARCC and store in on your Desktop in a folder called <code>PG2018</code> (scroll right to see entire <code>scp</code> command … ends in <code>PG2018</code>)
 <ul>
 <li>Note: Windows use <code>md</code> and <code>pscp</code> instead of <code>mkdir</code> and <code>scp</code></li>
 </ul></li>
 </ul>
-<pre><code># Change to the &quot;Desktop&quot; directory on your laptop
+<pre><code># On your **laptop**, change to the &quot;Desktop&quot; directory
 cd Desktop
 
 # Make a directory called PG2018 if it doesn&#39;t already exist
@@ -139,7 +139,10 @@ mkdir PG2018
 scp username@jhu.edu@gateway2.marcc.jhu.edu:work/test.txt PG2018</code></pre>
 <ul>
 <li>View the contents of <code>Desktop/PG2018/test.txt</code></li>
-<li>Build a <a href="https://www.youtube.com/watch?v=u06cm08U0BQ">genome index</a> using <a href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a></li>
+</ul></li>
+<li>Run a program on MARCC
+<ul>
+<li>Log into MARCC, connect to a compute node, and build a <a href="https://www.youtube.com/watch?v=u06cm08U0BQ">genome index</a> using <a href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a></li>
 </ul>
 <pre><code># Use your username, which should resemble lastname-temp
 ssh gateway2.marcc.jhu.edu -l username@jhu.edu
