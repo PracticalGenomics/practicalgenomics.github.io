@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.38.1" />
+
+
+<title>Morning Setup and Final Checklist - Practical Genomics Workshop</title>
+<meta property="og:title" content="Morning Setup and Final Checklist - Practical Genomics Workshop">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/wordlecircle_400x400.jpg"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/preparation/">Preparation</a></li>
+    
+    <li><a href="/slack/">Slack</a></li>
+    
+    <li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheatsheets</a></li>
+    
+    <li><a href="/rstudio/">RStudio</a></li>
+    
+    <li><a href="/marcc/">MARCC</a></li>
+    
+    <li><a href="http://genomics.jhu.edu/workshop">Registration</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Morning Setup and Final Checklist</h1>
+
+    
+
+    <div class="article-content">
+      <div id="did-you" class="section level2">
+<h2>Did you?</h2>
+<ol style="list-style-type: decimal">
+<li>Email your TA the <code>k4.png</code> file after installing the 5 programs via <code>conda install</code></li>
+<li>Email your TA an IGV screenshot zoomed into chr20 for <code>HUES64_rep1.mRNA.chr20.bw</code></li>
+<li>Use <code>library()</code> to check that each of the 12 R packages you installed loads correctly
+<ul>
+<li>e.g. <code>library( &quot;annotatr&quot; )</code></li>
+</ul></li>
+</ol>
+</div>
+<div id="do-each-morning-by-900am" class="section level2">
+<h2>Do each morning by 9:00am …</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Help</strong> – Monitor <code>#questions</code> from your Slack.app (laptop and phone)</li>
+<li><p><strong>Unix</strong> – Load programs installed via conda on MARCC</p>
+<pre><code>ssh gateway2.marcc.jhu.edu -l username@jhu.edu
+srun -p shared -c 1 --mem 1024 -t 120 --pty bash
+module load anaconda-python/3.6
+source activate pg2018
+deeptools</code></pre></li>
+<li><strong>Transfer</strong> – Practice copying a file from MARCC
+<ul>
+<li><p>Scroll to see entire command … ends in <code>Desktop/PG2018/...</code></p>
+<pre><code>scp username@jhu.edu@gateway2.marcc.jhu.edu:work/test.txt Desktop/PG2018/monday.txt</code></pre></li>
+<li>Check that file exists on your laptop by opening it</li>
+</ul></li>
+<li><strong>IGV</strong> – Start genomic visualization tool
+<ul>
+<li>Test by loading <code>HUES64_rep1.mRNA.chr20.bw</code> and zooming into <code>DNMT3B</code> gene</li>
+</ul></li>
+<li><strong>RStudio</strong> – Start integrated development environment for R
+<ul>
+<li>Test by <code>library( &quot;annotatr&quot; )</code></li>
+</ul></li>
+<li><strong>Notes</strong> – Store commands using TextEdit.app or Wordpad
+<ul>
+<li>Be sure to disable auto-correct features
+<ul>
+<li>e.g. Uncheck in TextEdit &gt; Preferences
+<ul>
+<li>Correct spelling automatically</li>
+<li>Smart quotes</li>
+<li>Smart dashes</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
